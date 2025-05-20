@@ -2,13 +2,11 @@
 require_once 'config.php';
 session_start(); 
 
-
 $messageErr = '';
 if (isset($_POST['submit'])) {
     $email    = htmlspecialchars($_POST['email']);
     $password = $_POST['password'];
 
-    // استعلام محضّر لمنع حقن SQL
     $stmt = $conn->prepare('SELECT user_id, username, email, password FROM users WHERE email = ?');
     $stmt->bind_param('s', $email);
     $stmt->execute();
@@ -19,9 +17,9 @@ if (isset($_POST['submit'])) {
         if (password_verify($password, $row['password'])) {
             $_SESSION['personal'] = [
                 'user_id'    => $row['user_id'],
-                'username'  => $row['username'],
-                'email' => $row['email'],
-                'user_type' => 'مستخدم عادي'
+                'username'   => $row['username'],
+                'email'      => $row['email'],
+                'user_type'  => 'مستخدم عادي'
             ];
             header('Location: pages/taizhotel.php');
             exit;
@@ -33,12 +31,15 @@ if (isset($_POST['submit'])) {
     }
     $stmt->close();
 }
-?><!DOCTYPE html><html lang="ar" dir="rtl">
+?>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول - فندق الأحلام</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>تسجيل الدخول - TAIZ HOTEL</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         body {
             background: url('assets/images/login-bg.jpg') center/cover no-repeat;
@@ -46,31 +47,60 @@ if (isset($_POST['submit'])) {
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: 'Cairo', sans-serif;
         }
         .card-login {
             backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.8);
-            border: none;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 2px solid #ffc107;
             border-radius: 1rem;
-            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.2);
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.3);
             padding: 2rem;
             max-width: 400px;
             width: 100%;
         }
+        h1 {
+            font-size: 1.8rem;
+            text-align: center;
+            color: #ffc107;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        h3 {
+            color: #343a40;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
         .form-floating > label {
             text-align: right;
         }
-        .logo {
-            display: block;
-            margin: 0 auto 1rem;
-            width: 100px;
+        .btn-warning {
+            background-color: #ffc107;
+            border: none;
+        }
+        .btn-warning:hover {
+            background-color: #e0ac06;
+        }
+        .alert-danger {
+            font-weight: 600;
+        }
+        a {
+            color: #ffc107;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        p.text-muted {
+            margin-top: 1rem;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
     <div class="card-login text-dark">
-        <img src="assets/images/logo.png" alt="Logo" class="logo">
-        <h3 class="text-center mb-4">تسجيل الدخول</h3>
+        <h1>TAIZ HOTEL</h1>
+        <h3>تسجيل الدخول</h3>
         <?php if ($messageErr): ?>
             <div class="alert alert-danger text-center"><?= $messageErr ?></div>
         <?php endif; ?>
@@ -84,9 +114,9 @@ if (isset($_POST['submit'])) {
                 <label for="floatingPassword">كلمة السر</label>
             </div>
             <div class="d-grid mb-3">
-                <button type="submit" name="submit" class="btn btn-primary btn-lg">دخول</button>
+                <button type="submit" name="submit" class="btn btn-warning btn-lg">دخول</button>
             </div>
-            <p class="text-center">ليس لديك حساب؟ <a href="register.php">إنشاء حساب</a></p>
+            <p class="text-center text-muted">ليس لديك حساب؟ <a href="register.php">إنشاء حساب</a></p>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
