@@ -108,7 +108,7 @@
         <!-- Gallery Section Start -->
         <section id="gallery">
             <div class="container">
-                <h2>Our Food Gallery</h2>
+                <h2>Our Rooms</h2>
                 <div class="img-gallery">
                     <img src="/assets/images/rooms/IMG_11892.png" alt="gallery1">
                     <img src="/assets/images/rooms/1.jpg" alt="gallery2">

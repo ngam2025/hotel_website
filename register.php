@@ -15,29 +15,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $image_name = uniqid('user_', true) . '-' . basename($image['name']);
     $target     = __DIR__ . '/uploads/' . $image_name;
     move_uploaded_file($image_tmp, $target);
-
-    $stmt = $conn->prepare('SELECT email FROM users WHERE email = ?');
-    $stmt->bind_param('s', $email);
+    try{
+    $stmt = $conn->prepare('SELECT email FROM users WHERE email =:email');
+    $stmt->bindParam(':email', $email,PDO::PARAM_STR);
     $stmt->execute();
-    $stmt->store_result();
+    
 
-    if ($stmt->num_rows > 0) {
+    if ($stmt->rowCount() > 0) {
         $messageErr = 'هذا المستخدم موجود من قبل';
     } elseif ($password !== $rpassword) {
         $messageErr = 'يجب أن تكون كلمة السر متطابقة';
     } else {
         $password_hash = password_hash($password, PASSWORD_BCRYPT);
-        $insert = $conn->prepare('INSERT INTO users (username , gender, email, password, date, imag) VALUES (?, ?, ?, ?, ?, ?)');
-        $insert->bind_param('ssssss', $name, $gender, $email, $password_hash, $dof, $image_name);
+        $insert = $conn->prepare('INSERT INTO users (username , gender, email, password, date, imag) 
+        VALUES (:name,:g,:em,:pas,:date,:terget)');
+        $insert->bindParam(':name', $name, PDO::PARAM_STR);
+        $insert->bindParam(':g', $email, PDO::PARAM_STR);
+        $insert->bindParam(':em', $gender, PDO::PARAM_STR);
+        $insert->bindParam(':pas', $password, PDO::PARAM_STR);
+        $insert->bindParam(':date', $dof, PDO::PARAM_STR);
+        $insert->bindParam(':terget', $target, PDO::PARAM_STR);
         if ($insert->execute()) {
             header('Location: login.php');
             exit;
-        } else {
-            $messageErr = 'فشل في إنشاء الحساب، حاول لاحقًا';
-        }
+        } 
     }
-
-    $stmt->close();
+    }catch(PDOException $e){
+        echo "Error ".$e->getMessage();
+    
+    }
+  
 }
 ?>
 <!DOCTYPE html>
