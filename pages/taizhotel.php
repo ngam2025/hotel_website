@@ -1,89 +1,169 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
+      <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link  rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
 <head>
+   
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Taiz Hotel</title>
-    <link rel="stylesheet" href="/assets/css/stylehotel.css">
+    <title>Tiaz Hotel</title>
+    <!-- Style Link -->
+    <link rel="stylesheet" href="/assets/css/Style.css">
+   
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
 </head>
 
 <body>
-  <nav id="top">
-    <h2><span>TAIZ</span> HOTEL</h2>
-    <ul>
-      <li><a href="taizhotel.html"">Home</a></li>
-      <li><a href="booking.html" >Booking</a></li>
-      <li><a href="about.html" >About</a></li>
-      <li><a href="index.htm" > Resstrant</a></li>
-      
-    </ul>
-  </nav>
     
-  <section>
-    Welcome to the five-star Taiz Hotel<br>
-    enjoy a great stay!
-  </section>
-  <a href="#top"><button class="totop">↥</button></a>
-  <div class="cards">
-    <div class="card1">
-      Welcome to <br>
-      experience the ultimate luxury, book your room or suite now.<br>
-      all services you need are here as long as you live 24 hour a day<br>
-      <button  href="booking.html" class="bt"> Book Now </button>
-    </div>
-    
-    <div class="card2">
-      The best hotel five-star in the area, Taiz Hotel<br>
-      -Best Services -Unparallel Comfort! <br>
-      <a href="about.html">
-      <label>More information → </label>
-      <button type="button" class="bt"> About us </button>
-      </a> 
-    </div>
-    <img src="/assets/images/card1.jpg">
-    <a href="booking.html" ><button type="button" class="btn">Book Now</button></a>
-  </div>
-
-  
-
-  
-  <p class="location">Location: Taiz, Bir bash, street no:123456 <br>
-    Taiz Hotel</p>
-
-  <div class="list-services">
-    <ul>
-      <li>Online Booking</li>
-      <li>Pay by Credit Card</li>
-      <li>Online Order</li>
-    </ul>
-
-    <ul>
-      <li>Five-star service</li>
-      <li>Modern Romms-Suites</li>
-      <li>Bure look</li>
-    </ul>
-
-    <ul>
-      <li>Healthy Food</li>
-      <li>Order Food from Best Resturant</li>
-      <li>Special Offers</li>
-    </ul>
-  </div>
-
-  <footer>
-    <img src="/assets/images/whatsapp.png">
-    <img src="/assets/images/facebook.png">
-    <img src="/assets/images/twitter.png">
-    <img src="/assets/images/instagram.png">
-    <img src="/assets/images/youtube.png">
-    <p>&copy; All rights are save</p>
-  </footer>
-  <footer id="footer">
-    <p>Copyright &copy; 2024 All rights reserved | made by <b> <a href="https://Restaurant HotelTiaz.com "
-                target="_blank"> Ngamaldeen AL-ziazi</a> </b></p>
-</footer>
-
+    <!-- Header Start -->
+    <header>
+        <div id="navbar">
+            <img src="./img/ngmlog.png" alt="Ngam Logo">
+            <nav role="navigation">
+                <ul>
+                    <li><a href="taizhotel.html">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#menu">Booking</a></li>
+                    <li><a href="#gallery">ROOMS</a></li>
+                    <li><a href="#contact">User Queries</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="content">
+            <h1>Welcome To <span class="primary-text"> hotell </span> Taiz</h1>
+            <p>Here you can find Most delicacies   world</p>
+            
+            
+        </div>
+    </header>
+    <!-- Header End -->
+    <main>
+        <!-- About Section Start -->
+        <section id="about">
+            <div class="container">
+                <div class="title">
+                    <h2>The  Hotel  Taiz</h2>
+                    <p>More than 2+ years of experience</p>
+                </div>
+                <div class="about-content">
+                    <div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, quibusdam saepe natus
+                            numquam dolorum aliquam ducimus molestias tenetur? Quaerat, atque blanditiis. Debitis
+                            voluptatem
+                            sequi quibusdam nihil eveniet obcaecati soluta rem.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat nesciunt aspernatur earum
+                            sequi
+                            consequatur, quasi iste quod nam esse adipisci neque commodi voluptate deserunt architecto
+                            rerum. Blanditiis labore sed sapiente.</p>
+                        <a href="#" class="btn btn-secondary">LEARN MORE</a>
+                    </div>
+                    <img src="/assets/images/carousel/4.png" alt="carousel">
+                </div>
+            </div>
+        </section>
+        <!-- About Section End -->
+        <!-- Rooms Section Start -->
+        <section id="offers">
+            <div class="container">
+                <div class="title">
+                    <h2>Our Special Offers</h2>
+                    <p>More than 5+ years of experience</p>
+                </div>
+                <div class="offers-items">
+                    <div>
+                        <img src="/assets/images/rooms/IMG_78809.png" alt="room name Pasta">
+                        <div>
+                            <h3>ppppppppppp </h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam.</p>
+                            <p><del>$ 100.00</del> <span class="primary-text">$80.00</span></p>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="/assets/images/rooms/1.jpg" alt="Rooms">
+                        <div>
+                            <h3>rom </h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Name, quibusdam.</p>
+                            <p><del>$ 55.00</del> <span class="primary-text">$20.00</span></p>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="/assets/images/rooms/thumbnail.jpg" alt="room name">
+                        <div>
+                            <h3>roommmmmm</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Name, quibusdam.</p>
+                            <p><del>$ 55.00</del> <span class="primary-text">$20.00</span></p>
+                        </div>
+                        
+                    </div>
+                   
+                </div>
+               
+            </div>
+        </section>
+        
+        <!-- Daytime section end-->
+        <!-- Gallery Section Start -->
+        <section id="gallery">
+            <div class="container">
+                <h2>Our Food Gallery</h2>
+                <div class="img-gallery">
+                    <img src="/assets/images/rooms/IMG_11892.png" alt="gallery1">
+                    <img src="/assets/images/rooms/1.jpg" alt="gallery2">
+                    <img src="/assets/images/rooms/IMG_11892.png" alt="gallery3">
+                    <img src="/assets/images/rooms/IMG_17474.png" alt="gallery4">
+                    <img src="/assets/images/rooms/IMG_39782.png" alt="gallery5">
+                    <img src="/assets/images/rooms/IMG_44867.png" alt="gallery6">
+                    <img src="/assets/images/rooms/IMG_65019.png" alt="gallery7">
+                    <img src="/assets/images/rooms/IMG_67761.png" alt="gallery7">
+                    <img src="/assets/images/rooms/3.png" alt="gallery8">
+                    <img src="/assets/images/rooms/IMG_78809.png" alt="gallery9">
+                    <img src="/assets/images/rooms/4.png" alt="">
+                    <img src="/assets/images/rooms/2.png" alt="">
+                </div>
+                <button class="btn btn-third"><a href="#">EXPLORE FULL MENU</a></button>
+            </div>
+        </section>
+        <!-- Gallary Section End -->
+        <!-- Contact Section Start -->
+        <section id="contact">
+            <div class="container">
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div>
+                            <h3>ADDRESS</h3>
+                            <p><i class="fa-solid fa-location-dot"></i> Hosary Mosque, 11 November, Yemen</p>
+                            <p><i class="fa-solid fa-phone"></i> Phone: 780022325</p>
+                            <p><i class="fa-regular fa-envelope"></i></p>
+                        </div>
+                        <div>
+                            <h3>WORKING HOURS</h3>
+                            <p>8:00 am to 11:00 pm on Weekdays</p>
+                            <p>11:00 am to 1:00 Am on Weekends</p>
+                        </div>
+                        <div>
+                            <h3>FOLLOW US</h3>
+                           
+                        </div>
+                    </div>
+                    <form>
+                        <input type="text" name="subject" id="name" placeholder="Subject">
+                        
+                        
+                        <textarea name="message" id="message" cols="30" rows="5" placeholder="Message"></textarea>
+                        <button type="submit" class="btn btn-third">SEND MESSAGE</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section End -->
+    </main>
+    <footer id="footer">
+        <p>Copyright &copy; 2024 All rights reserved | made by <b> <a href=" https://github.com/ngam2025/hotel_website "
+                    target="_blank"> Ngamaldeen AL-ziazi</a> </b></p>
+    </footer>
 </body>
+
 </html>
