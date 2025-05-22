@@ -32,14 +32,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $messageErr = 'يجب أن تكون كلمة السر متطابقة';
     } else {
         $password_hash = password_hash($password, PASSWORD_BCRYPT);
-        $insert = $conn->prepare('INSERT INTO users (username , gender, email, password, date, imag) 
-        VALUES (:name,:g,:em,:pas,:date,:terget)');
-        $insert->bindParam(':name', $name, PDO::PARAM_STR);
-        $insert->bindParam(':g', $email, PDO::PARAM_STR);
-        $insert->bindParam(':em', $gender, PDO::PARAM_STR);
-        $insert->bindParam(':pas', $password_hash, PDO::PARAM_STR);
-        $insert->bindParam(':date', $dof, PDO::PARAM_STR);
-        $insert->bindParam(':terget', $target, PDO::PARAM_STR);
+       $insert = $conn->prepare('INSERT INTO users (username , email, password, gender, date, imag) 
+VALUES (:name,:em,:pas,:g,:date,:terget)');
+
+$insert->bindParam(':name', $name, PDO::PARAM_STR);
+$insert->bindParam(':em', $email, PDO::PARAM_STR);    
+$insert->bindParam(':pas', $password_hash, PDO::PARAM_STR);
+$insert->bindParam(':g', $gender, PDO::PARAM_STR);    
+$insert->bindParam(':date', $dof, PDO::PARAM_STR);
+$insert->bindParam(':terget', $target, PDO::PARAM_STR);
+
         if ($insert->execute()) {
             header('Location: login.php');
             exit;
@@ -53,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <!DOCTYPE html>
+ <!-- $target -->
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8" />
