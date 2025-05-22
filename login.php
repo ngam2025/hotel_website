@@ -1,5 +1,6 @@
 <?php
 require_once 'config.php';
+$timeCookie = time() + 10*60*60;
 session_start(); 
 $messageErr = '';
 if (isset($_POST['submit'])) {
@@ -7,20 +8,15 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
     try{
         $stmt = $conn->prepare("SELECT user_id, username, email, password FROM users WHERE email =:s");
-        $stmt->bindParam(":s", $email,PDO::PARAM_STR);
+        $stmt->bindParam(":s", $email, PDO::PARAM_STR);
         $stmt->execute();
         
-
         if ($stmt->rowCount() > 0) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             if (password_verify($password, $row['password'])) {
-                $_SESSION['personal'] = [
-                    'user_id'    => $row['user_id'],
-                    'username'   => $row['username'],
-                    'email'      => $row['email'],
-                    'image'  ->$row['image']
-                    
-                ];
+                $_SESSION['user_id'] =  $row['user_id'];
+                setCookie('loged_in', $row['user_id'], $timeCookie, '/', 'localhost');
+                
                 header('Location: pages/taizhotel.php');
                 exit;
             } else {
@@ -29,15 +25,13 @@ if (isset($_POST['submit'])) {
         } else {
             $messageErr = 'خطأ في البريد الإلكتروني';
         }
-    }catch(PDOException $e){
-        echo "error".$e->getMessage();
+    } catch(PDOException $e) {
+        echo "error" . $e->getMessage();
         http_response_code(500);
     }
-    
 }
 ?>
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -106,7 +100,10 @@ if (isset($_POST['submit'])) {
         <h1>TAIZ HOTEL</h1>
         <h3>تسجيل الدخول</h3>
         <?php if ($messageErr): ?>
-            <div class="alert alert-danger text-center"><?= $messageErr ?></div>
+            <div class="alert alert-danger text-center" id="error-box">
+                <?= htmlspecialchars($messageErr) ?>
+                <button type="button" class="btn btn-danger mt-3" onclick="document.getElementById('error-box').style.display='none'">حسنًا</button>
+            </div>
         <?php endif; ?>
         <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>">
             <div class="form-floating mb-3">
