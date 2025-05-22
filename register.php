@@ -1,8 +1,11 @@
 <?php
 require_once 'config.php';
+ 
 $messageErr = '';
+$timeCookie=time()+30*60*60;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
     $name       = htmlspecialchars($_POST['username']);
     $email      = htmlspecialchars($_POST['email']);
     $gender     = htmlspecialchars($_POST['gender']);
@@ -15,11 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $image_name = uniqid('user_', true) . '-' . basename($image['name']);
     $target     = __DIR__ . '/uploads/' . $image_name;
     move_uploaded_file($image_tmp, $target);
+    setCookie('username',$name, $timeCookie,'/','localhost');
+    setCookie('email',$email,$timeCookie,'/','localhost');
+    
     try{
     $stmt = $conn->prepare('SELECT email FROM users WHERE email =:email');
     $stmt->bindParam(':email', $email,PDO::PARAM_STR);
     $stmt->execute();
-    
 
     if ($stmt->rowCount() > 0) {
         $messageErr = 'هذا المستخدم موجود من قبل';
@@ -32,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $insert->bindParam(':name', $name, PDO::PARAM_STR);
         $insert->bindParam(':g', $email, PDO::PARAM_STR);
         $insert->bindParam(':em', $gender, PDO::PARAM_STR);
-        $insert->bindParam(':pas', $password, PDO::PARAM_STR);
+        $insert->bindParam(':pas', $password_hash, PDO::PARAM_STR);
         $insert->bindParam(':date', $dof, PDO::PARAM_STR);
         $insert->bindParam(':terget', $target, PDO::PARAM_STR);
         if ($insert->execute()) {
@@ -112,6 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
+
     <div class="card-register text-dark">
         <h1>TAIZ HOTEL</h1>
         <h3>إنشاء حساب جديد</h3>

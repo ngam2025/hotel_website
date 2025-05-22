@@ -1,3 +1,34 @@
+<?php
+    require_once '../config.php';
+    session_start();
+    $pathImag;;
+    $name ;
+    
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if(isset($_SESSION['personal']['user_id'])){
+    $subject       = htmlspecialchars($_POST['subject']);
+    $message      = htmlspecialchars($_POST['message']);
+    $user_id=$_SESSION['personal']['user_id'];
+     $pathImag=$_SESSION['personal']['image'];
+    $name=$_SESSION['personal']['username'];
+    
+    }
+    try{
+        $insert = $conn->prepare('INSERT INTO user_queries (subject , massage, user_id)VALUES (:sub,:mess,:user_id)');
+        $insert->bindParam(':sub', $subject, PDO::PARAM_STR);
+        $insert->bindParam(':mess', $message, PDO::PARAM_STR);
+        $insert->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        if($insert->execute()>0){
+            echo "sending successfully";
+        }else{
+            echo "fialed sending";
+        }
+        
+    }catch(PDOException $e){
+        http_response_code(500);
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
       <meta charset="UTF-8">
@@ -21,7 +52,7 @@
     <!-- Header Start -->
     <header>
         <div id="navbar">
-            <img src="./img/ngmlog.png" alt="Ngam Logo">
+            <img src="">
             <nav role="navigation">
                 <ul>
                     <li><a href="taizhotel.html">Home</a></li>
@@ -148,12 +179,10 @@
                            
                         </div>
                     </div>
-                    <form>
-                        <input type="text" name="subject" id="name" placeholder="Subject">
-                        
-                        
-                        <textarea name="message" id="message" cols="30" rows="5" placeholder="Message"></textarea>
-                        <button type="submit" class="btn btn-third">SEND MESSAGE</button>
+                    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data">
+                        <input type="text"  name="subject" id="name" placeholder="Subject" required>
+                        <textarea name="message" id="message" cols="30" rows="5" placeholder="Message" required></textarea>
+                        <button type="submit" name="submit" class="btn btn-third">SEND MESSAGE</button>
                     </form>
                 </div>
             </div>

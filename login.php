@@ -1,36 +1,39 @@
 <?php
 require_once 'config.php';
 session_start(); 
-
 $messageErr = '';
 if (isset($_POST['submit'])) {
     $email = htmlspecialchars($_POST['email']);
     $password = $_POST['password'];
+    try{
+        $stmt = $conn->prepare("SELECT user_id, username, email, password FROM users WHERE email =:s");
+        $stmt->bindParam(":s", $email,PDO::PARAM_STR);
+        $stmt->execute();
+        
 
-    $stmt = $conn->prepare("SELECT user_id, username, email, password FROM users WHERE email =:s");
-    $stmt->bindParam(":s", $email,PDO::PARAM_STR);
-    $stmt->execute();
-    
-
-    if ($stmt->rowCount() > 0) {
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        if (password_verify($password, $row['password'])) {
-            $_SESSION['personal'] = [
-                'user_id'    => $row['user_id'],
-                'username'   => $row['username'],
-                'email'      => $row['email'],
-                
-                'user_type'  => ' user'
-            ];
-            header('Location: pages/taizhotel.php');
-            exit;
+        if ($stmt->rowCount() > 0) {
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (password_verify($password, $row['password'])) {
+                $_SESSION['personal'] = [
+                    'user_id'    => $row['user_id'],
+                    'username'   => $row['username'],
+                    'email'      => $row['email'],
+                    'image'  ->$row['image']
+                    
+                ];
+                header('Location: pages/taizhotel.php');
+                exit;
+            } else {
+                $messageErr = 'خطأ في كلمة السر';
+            }
         } else {
-            $messageErr = 'خطأ في كلمة السر';
+            $messageErr = 'خطأ في البريد الإلكتروني';
         }
-    } else {
-        $messageErr = 'خطأ في البريد الإلكتروني';
+    }catch(PDOException $e){
+        echo "error".$e->getMessage();
+        http_response_code(500);
     }
-    $stmt->close();
+    
 }
 ?>
 <!DOCTYPE html>
