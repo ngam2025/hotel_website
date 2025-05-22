@@ -1,16 +1,14 @@
 <?php
     require_once '../config.php';
     session_start();
-    $pathImag;;
-    $name ;
+    
     
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if(isset($_SESSION['personal']['user_id'])){
     $subject       = htmlspecialchars($_POST['subject']);
     $message      = htmlspecialchars($_POST['message']);
-    $user_id=$_SESSION['personal']['user_id'];
-     $pathImag=$_SESSION['personal']['image'];
-    $name=$_SESSION['personal']['username'];
+    $user_id=$_SESSION['user_id'];
+    
     
     }
     try{
@@ -34,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link  rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
 <head>
    
     <meta charset="UTF-8">
@@ -57,9 +55,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <ul>
                     <li><a href="taizhotel.html">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#menu">Booking</a></li>
-                    <li><a href="#gallery">ROOMS</a></li>
+                    <li><a href="room.php">ROOMS</a></li>
                     <li><a href="#contact">User Queries</a></li>
+                    <li><a href="logout.php">Log Out</a></li>
                 </ul>
             </nav>
         </div>
@@ -71,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </header>
     <!-- Header End -->
-    <main>
+    <>
         <!-- About Section Start -->
         <section id="about">
             <div class="container">
@@ -89,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             sequi
                             consequatur, quasi iste quod nam esse adipisci neque commodi voluptate deserunt architecto
                             rerum. Blanditiis labore sed sapiente.</p>
-                        <a href="#" class="btn btn-secondary">LEARN MORE</a>
+                        <a href="booking.php" class="btn btn-secondary">LEARN MORE</a>
                     </div>
                     <img src="/assets/images/carousel/4.png" alt="carousel">
                 </div>

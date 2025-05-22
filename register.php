@@ -2,7 +2,7 @@
 require_once 'config.php';
  
 $messageErr = '';
-$timeCookie=time()+30*60*60;
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -18,8 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $image_name = uniqid('user_', true) . '-' . basename($image['name']);
     $target     = __DIR__ . '/uploads/' . $image_name;
     move_uploaded_file($image_tmp, $target);
-    setCookie('username',$name, $timeCookie,'/','localhost');
-    setCookie('email',$email,$timeCookie,'/','localhost');
+    
     
     try{
     $stmt = $conn->prepare('SELECT email FROM users WHERE email =:email');

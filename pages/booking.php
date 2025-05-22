@@ -1,3 +1,50 @@
+<?php
+require_once '../config.php';
+session_start();
+$massageError;
+$id;
+$room_id;
+if($_SERVER['REQUEST_METHOD']==='POST'){
+  $typeBooking=$_POST['bookingType'];
+  $user_id=$_SESSION['user_id'];
+  if(isset($_POST['room_id'])){
+    $room_id=intval($_POST['room_id']);
+  }else{
+    $room_id=1;
+  }
+  $check_in=$_POST['checkIn'];
+  $check_out=$_POST['checkOut'];
+  $type_payment=$_POST['paymentStatus'];
+  $din=new DateTime($check_in);
+  $dout=new DateTime($check_out);
+  $diff=$din->diff($dout);
+  $day=$diff->days;
+  $pric=100.8;
+  $booking_amont=$pric * $day;
+  try{
+    $insert = $conn->prepare('INSERT INTO booking_order (user_id , room_id, check_in, check_out,type_payment,booking_amont,type_booking) 
+        VALUES (:u_id,:r_id,:ch_in,:ch_out,:t_p,:b_a,:t_b)');
+        $insert->bindParam(':u_id', $user_id, PDO::PARAM_INT);
+        $insert->bindParam(':r_id', $room_id, PDO::PARAM_INT);
+        $insert->bindParam(':ch_in', $check_in, PDO::PARAM_STR);
+        $insert->bindParam(':ch_out', $check_out, PDO::PARAM_STR);
+        $insert->bindParam(':t_p', $type_payment, PDO::PARAM_STR);
+        $insert->bindParam(':b_a', $booking_amont, PDO::PARAM_STR);
+         $insert->bindParam(':t_b', $typeBooking, PDO::PARAM_STR);
+        if ($insert->execute()) {
+            header('Location: taizhotel.php');
+            exit;
+        } 
+        else{
+          $massegeError= "  error ";
+        }
+  }catch(PDOException $e){
+    echo "error".$e->getMessage();
+    http_response_code(500);
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -64,7 +111,7 @@
     <h1>TAIZ HOTEL</h1>
     <h3>نموذج حجز فندق</h3>
 
-    <form method="post" action="">
+    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data">
 
       <div class="form-floating mb-3">
         <select class="form-select" id="bookingType" name="bookingType" required>
