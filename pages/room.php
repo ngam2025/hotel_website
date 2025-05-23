@@ -3,7 +3,7 @@ require_once '../config.php';
 session_start();
 
 try {
-    $stmt = $conn->prepare("SELECT * FROM rooms WHERE r_status = 1 AND r_removed = 0");
+    $stmt = $conn->prepare("SELECT * FROM rooms WHERE r_status =0 AND r_removed = 0");
     $stmt->execute();
     $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $ex) {
@@ -48,11 +48,13 @@ try {
     </header><main class="container my-5">
     <?php if ($rooms): ?>
     <div class="row g-4">
+        
         <?php foreach ($rooms as $room): ?>
             <div class="col-md-6 col-lg-4">
                 <div class="room-card bg-white">
                     <form method="POST" action="booking.php">
-                    <img src="../assets/images/rooms/1.jpg" alt="<?= htmlspecialchars($room['r_name']) ?>">
+                    <?php $imag=htmlspecialchars($room['r_imag'] )?>
+                    <img src="<?php echo "../assets/images/rooms/".$imag ?>" alt="">
                     <div class="room-info">
                         <h5><?= htmlspecialchars($room['r_name']) ?></h5>
                         <p><?= nl2br(htmlspecialchars($room['r_description'])) ?></p>

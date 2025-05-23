@@ -1,7 +1,11 @@
 <?php 
 require_once '../../config.php';
 include '../sideNAV.php'; 
-$stm = $conn->prepare("SELECT * FROM rooms");
+
+$sql="SELECT q.query_id , q.subject ,q.massage ,q.send_at ,u.username , u.email 
+FROM user_queries AS q JOIN users As u
+ON q.user_id=u.user_id;";
+$stm = $conn->prepare($sql);
 $stm->execute();
 ?>
 <!DOCTYPE html>
@@ -128,41 +132,35 @@ img {
     </style>
 </head>
 <body>
-    <h2>Room List</h2>
+    <h2>Users Requies</h2>
 <div class="panel">
-  <div class="panel-header">
-    <a href="addRoom.php" class="btn btn-add">+ Add Room</a>
-  </div>
-
+   
   <table>
     <thead>
       <tr>
         <th>ID</th>
-        <th>Room Name</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Description</th>
-        <th>Image</th>
-        <th>Status</th>
-        <th>Action</th>
+        <th>Subject</th>
+        <th>Message</th>
+        <th>Send At</th>
+        <th>Username</th>
+        <th>E-mail</th>
+        
       </tr>
     </thead>
     <tbody>
       <?php while ($row = $stm->fetch(PDO::FETCH_ASSOC)) { 
-        $imag=$row['r_imag'];
         ?>
         <tr>
-          <td><?= $row['r_id'] ?></td>
-          <td><?= $row['r_name'] ?></td>
-          <td><?= $row['r_price'] ?></td>
-          <td><?= $row['quantity'] ?></td>
-          <td><?= $row['r_description'] ?></td>
+          <td><?= $row['query_id'] ?></td>
+          <td><?= $row['subject'] ?></td>
+          <td><?= $row['massage'] ?></td>
+          <td><?= $row['username'] ?></td>
+          <td><?= $row['email'] ?></td>
            
-          <td><img src="<?php echo "/../../assets/images/rooms/".$imag ?>" alt=""></td>
-          <td><?= $row['r_status'] ?></td>
+         
           <td>
-            <a href="delet.php?id=<?= $row['r_id'] ?>" class="btn btn-delete">Delete</a>
-            <a href="update.php?id=<?= $row['r_id'] ?>" class="btn btn-update">Update</a>
+            <a href="deletr.php?id=<?= $row['query_id'] ?>" class="btn btn-delete">Delete</a>
+            <a href="response.php?id=<?= $row['email'] ?>" class="btn btn-update">Response</a>
           </td>
         </tr>
       <?php } ?>

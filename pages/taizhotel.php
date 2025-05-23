@@ -32,8 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet"> -->
 
 <head>
    
@@ -52,10 +52,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Header Start -->
     <header>
         <div id="navbar">
-            <img src="">
+            
             <nav role="navigation">
                 <ul>
-                    <li><a href="taizhotel.html">Home</a></li>
+                    <li><a href="taizhotel.php">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="room.php">ROOMS</a></li>
                     <li><a href="#contact">User Queries</a></li>
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <div class="content">
             <h1>Welcome To <span class="primary-text"> hotell </span> Taiz</h1>
-            <p>Here you can find Most delicacies   world</p>
+            <p>Here you can find Most Suites and Rooms Hotell</p>
             
             
         </div>
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             sequi
                             consequatur, quasi iste quod nam esse adipisci neque commodi voluptate deserunt architecto
                             rerum. Blanditiis labore sed sapiente.</p>
-                        <a href="booking.php" class="btn btn-secondary">LEARN MORE</a>
+                        <a href="#" class="btn btn-secondary">LEARN MORE</a>
                     </div>
                     <img src="/assets/images/carousel/4.png" alt="carousel">
                 </div>
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div>
                         <img src="/assets/images/rooms/IMG_78809.png" alt="room name Pasta">
                         <div>
-                            <h3>ppppppppppp </h3>
+                            <h3>room name</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam.</p>
                             <p><del>$ 100.00</del> <span class="primary-text">$80.00</span></p>
                         </div>
@@ -115,15 +115,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div>
                         <img src="/assets/images/rooms/1.jpg" alt="Rooms">
                         <div>
-                            <h3>rom </h3>
+                            <h3>room name </h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Name, quibusdam.</p>
                             <p><del>$ 55.00</del> <span class="primary-text">$20.00</span></p>
                         </div>
                     </div>
                     <div>
-                        <img src="/assets/images/rooms/thumbnail.jpg" alt="room name">
+                        <img src="/assets/images/rooms/2.png" alt="room name">
                         <div>
-                            <h3>roommmmmm</h3>
+                            <h3>room name</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Name, quibusdam.</p>
                             <p><del>$ 55.00</del> <span class="primary-text">$20.00</span></p>
                         </div>
@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <img src="/assets/images/rooms/IMG_44867.png" alt="gallery6">
                     <img src="/assets/images/rooms/IMG_65019.png" alt="gallery7">
                     <img src="/assets/images/rooms/IMG_67761.png" alt="gallery7">
-                    <img src="/assets/images/rooms/3.png" alt="gallery8">
+                    <img src="/assets/images/rooms/IMG_44867.png" alt="gallery8">
                     <img src="/assets/images/rooms/IMG_78809.png" alt="gallery9">
                     <img src="/assets/images/rooms/4.png" alt="">
                     <img src="/assets/images/rooms/2.png" alt="">

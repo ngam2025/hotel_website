@@ -64,7 +64,7 @@ ul {
 /* Header Start */
 header {
   height: 100vh;
-  background: url("../images/carousel/3.png") center center/cover no-repeat;
+  background: url("../images/carousel/1.png") center center/cover no-repeat;
   position: relative;
 }
 
@@ -87,19 +87,20 @@ nav ul {
 }
 
 nav ul li a {
-  padding: 15px 20px;
+  padding: 10px 10px;
   font-weight: 600;
   margin: 3px;
   
-  border:2px solid beige;
+  border:2px solid rgb(20, 30, 19);
   border-radius: 15px;
   cursor: pointer;
+  background: black;
 
 }
 
 nav ul li a:hover {
-  border: 2px solid #ee9511;
-  background: #ef7070;
+  border: 2px solid #972103;
+  background: #e63838;
 }
 
 header .content {
@@ -107,22 +108,23 @@ header .content {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 75%; /* Add exmple of greeen background */
+  height: 100%; /* Add exmple of greeen background */
 
 }
 header .content a{
-  margin: 6px;
+  margin: 3px;
 }
 
 
 header .content h1 {
   font-size: 40px;
-  color: #fff;
+  color:black;
 }
 
 header .content p {
-  color: #fff;
-  margin: 20px 0 40px;
+  font-size: 30px;
+  color: #8b8bf1;
+  margin: 10px 0 20px;
 }
 
 
@@ -184,7 +186,7 @@ header .content p {
 /* Offers Section start */
 #offers {
   height: 90vh;
-  background: url("../images/carousel/IMG_34694.jpg") center center/cover fixed;
+  background: url("../images/carousel/5.png") center center/cover fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
