@@ -4,10 +4,11 @@
     
     
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if(isset($_SESSION['personal']['user_id'])){
+    if(isset($_SESSION['user']['user_id'])){
     $subject       = htmlspecialchars($_POST['subject']);
     $message      = htmlspecialchars($_POST['message']);
-    $user_id=$_SESSION['user_id'];
+    $user_id=$_SESSION['user']['user_id'];
+    $username=$_SESSION['user']['name'];
     
     
     }
@@ -43,12 +44,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Tiaz Hotel</title>
     <!-- Style Link -->
     <link rel="stylesheet" href="/assets/css/Style.css">
+    <link rel="stylesheet" href="/assets/css/alert.css">
   
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
 </head>
 
 <body>
-    
+   
     <!-- Header Start -->
     <header>
         <div id="navbar">
@@ -193,6 +195,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p>Copyright &copy; 2024 All rights reserved | made by <b> <a href=" https://github.com/ngam2025/hotel_website "
                     target="_blank"> Ngamaldeen AL-ziazi</a> </b></p>
     </footer>
+    <div id="alert-container">
+
+    </div>
+    <script src="/assets/js/alert.js"></script>
+
 </body>
 
 </html>

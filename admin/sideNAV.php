@@ -92,7 +92,7 @@
 
   <div class="header">
     Taiz Hotel
-    <button class="logout-button">Logout</button>
+    <button class="logout-button" src="logout.php">Logout</button>
   </div>
 
   <nav class="main-menu">
