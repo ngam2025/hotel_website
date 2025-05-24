@@ -1,9 +1,9 @@
 <?php 
 session_start();
-if(empty($_SESSION['user_id']) && !empty($_COOKIE['loged_in'])){
-  $_SESSION['user_id']=$_COOKIE['loged_in'];
+if(empty($_SESSION['user']['user_id']) && !empty($_COOKIE['loged_in'])){
+  $_SESSION['user']['user_id']=$_COOKIE['loged_in'];
 }
-if(!empty($_SESSION['user_id'])){
+if(!empty($_SESSION['user']['user_id'])){
   header('Location:../pages/taizhotel.php');
 }
 ?>
