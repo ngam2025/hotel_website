@@ -4,10 +4,13 @@
     
     
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
     if(isset($_SESSION['personal']['user_id'])){
+      
+ 
     $subject       = htmlspecialchars($_POST['subject']);
     $message      = htmlspecialchars($_POST['message']);
-    $user_id=$_SESSION['user_id'];
+    $user_id = $_SESSION['personal']['user_id'];
     
     
     }
@@ -36,15 +39,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <!-- <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet"> -->
 
 <head>
-   
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tiaz Hotel</title>
-    <!-- Style Link -->
-    <link rel="stylesheet" href="/assets/css/Style.css">
-  
-    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tiaz Hotel</title>
+
+  <!-- Bootstrap محلي -->
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+
+  <!-- CSS خاص بالموقع -->
+  <link rel="stylesheet" href="../assets/css/Style.css" />
+
+  <link rel="shortcut icon" href="../favicon.ico" />
 </head>
 
 <body>
@@ -91,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             rerum. Blanditiis labore sed sapiente.</p>
                         <a href="#" class="btn btn-secondary">LEARN MORE</a>
                     </div>
-                    <img src="/assets/images/carousel/4.png" alt="carousel">
+                    <img src="../assets/images/carousel/4.png" alt="carousel">
                 </div>
             </div>
         </section>
@@ -105,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <div class="offers-items">
                     <div>
-                        <img src="/assets/images/rooms/IMG_78809.png" alt="room name Pasta">
+                        <img src="../assets/images/rooms/IMG_78809.png" alt="room name Pasta">
                         <div>
                             <h3>room name</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quibusdam.</p>
@@ -113,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                     </div>
                     <div>
-                        <img src="/assets/images/rooms/1.jpg" alt="Rooms">
+                        <img src="../assets/images/rooms/1.jpg" alt="Rooms">
                         <div>
                             <h3>room name </h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Name, quibusdam.</p>
@@ -121,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                     </div>
                     <div>
-                        <img src="/assets/images/rooms/2.png" alt="room name">
+                        <img src="../assets/images/rooms/2.png" alt="room name">
                         <div>
                             <h3>room name</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Name, quibusdam.</p>
@@ -141,18 +147,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="container">
                 <h2>Our Rooms</h2>
                 <div class="img-gallery">
-                    <img src="/assets/images/rooms/IMG_11892.png" alt="gallery1">
-                    <img src="/assets/images/rooms/1.jpg" alt="gallery2">
-                    <img src="/assets/images/rooms/IMG_11892.png" alt="gallery3">
-                    <img src="/assets/images/rooms/IMG_17474.png" alt="gallery4">
-                    <img src="/assets/images/rooms/IMG_39782.png" alt="gallery5">
-                    <img src="/assets/images/rooms/IMG_44867.png" alt="gallery6">
-                    <img src="/assets/images/rooms/IMG_65019.png" alt="gallery7">
-                    <img src="/assets/images/rooms/IMG_67761.png" alt="gallery7">
-                    <img src="/assets/images/rooms/IMG_44867.png" alt="gallery8">
-                    <img src="/assets/images/rooms/IMG_78809.png" alt="gallery9">
-                    <img src="/assets/images/rooms/4.png" alt="">
-                    <img src="/assets/images/rooms/2.png" alt="">
+                    <img src="../assets/images/rooms/IMG_11892.png" alt="gallery1">
+                    <img src="../assets/images/rooms/1.jpg" alt="gallery2">
+                    <img src="../assets/images/rooms/IMG_11892.png" alt="gallery3">
+                    <img src="../assets/images/rooms/IMG_17474.png" alt="gallery4">
+                    <img src="../assets/images/rooms/IMG_39782.png" alt="gallery5">
+                    <img src="../assets/images/rooms/IMG_44867.png" alt="gallery6">
+                    <img src="../assets/images/rooms/IMG_65019.png" alt="gallery7">
+                    <img src="../assets/images/rooms/IMG_67761.png" alt="gallery7">
+                    <img src="../assets/images/rooms/IMG_44867.png" alt="gallery8">
+                    <img src="../assets/images/rooms/IMG_78809.png" alt="gallery9">
+                    <img src="../assets/images/rooms/4.png" alt="">
+                    <img src="../assets/images/rooms/2.png" alt="">
                 </div>
                 <button class="btn btn-third"><a href="#">EXPLORE FULL MENU</a></button>
             </div>

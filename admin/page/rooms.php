@@ -131,7 +131,7 @@ img {
     <h2>Room List</h2>
 <div class="panel">
   <div class="panel-header">
-    <a href="addRoom.php" class="btn btn-add">+ Add Room</a>
+    <a href="addrom.php" class="btn btn-add">+ Add Room</a>
   </div>
 
   <table>

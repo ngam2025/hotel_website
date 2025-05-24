@@ -4,7 +4,6 @@ require_once '../../config.php';
 $messageErr = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $room_id        = $_GET['id']; // تأكد أن معرف الغرفة يأتي من الرابط
     $r_name         = $_POST['r_name'];
     $r_area         = $_POST['r_area'];
     $r_price        = $_POST['r_price'];
@@ -13,35 +12,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $child_capacity = $_POST['child_capacity'];
     $r_description  = $_POST['r_description'];
     $r_status       = $_POST['r_status'];
+    $r_removed      = 0;
 
-    $query = "UPDATE rooms SET r_name=:name, r_area=:area, r_price=:price, quantity=:quantity,
-              adult_capacity=:adult, child_capacity=:child, r_description=:descr, r_status=:status
-              WHERE r_id = :id";
+ $image = $_FILES['r_image']; 
+$image_tmp = $image['tmp_name'];
+$image_name = uniqid('room_', true) . '-' . basename($image['name']);
 
-    $stmt = $conn->prepare($query);
-    $stmt->bindParam(':name', $r_name,PDO::PARAM_STR );
-    $stmt->bindParam(':area', $r_area,PDO::PARAM_STR);
-    $stmt->bindParam(':price', $r_price,PDO::PARAM_INT);
-    $stmt->bindParam(':quantity', $quantity,PDO::PARAM_INT);
-    $stmt->bindParam(':adult', $adult_capacity,PDO::PARAM_INT);
-    $stmt->bindParam(':child', $child_capacity,PDO::PARAM_INT);
-    $stmt->bindParam(':descr', $r_description,PDO::PARAM_STR);
-    $stmt->bindParam(':status', $r_status,PDO::PARAM_STR);
-    $stmt->bindParam(':id', $room_id,PDO::PARAM_INT);
+    
+    // المسار الجديد لتخزين الصور
+    $upload_dir     = __DIR__ . '/../../assets/images/rooms/';
+    $target         = $upload_dir . $image_name;
 
-    if ($stmt->execute()) {
-        header("Location: rooms.php");
-        exit;
+  
+    if (move_uploaded_file($image_tmp, $target)) {
+        try {
+            $insert = $conn->prepare("INSERT INTO rooms 
+            (r_name, r_area, r_price, quantity, adult_capacity, child_capacity, r_description, r_imag, r_status, r_removed) 
+            VALUES 
+            (:name, :area, :price, :quantity, :adult, :child, :descr, :image, :status, :removed)");
+
+            $insert->bindParam(':name', $r_name, PDO::PARAM_STR);
+            $insert->bindParam(':area', $r_area, PDO::PARAM_STR);
+            $insert->bindParam(':price', $r_price, PDO::PARAM_INT);
+            $insert->bindParam(':quantity', $quantity, PDO::PARAM_INT);
+            $insert->bindParam(':adult', $adult_capacity, PDO::PARAM_INT);
+            $insert->bindParam(':child', $child_capacity, PDO::PARAM_INT);
+            $insert->bindParam(':descr', $r_description, PDO::PARAM_STR);
+            $insert->bindParam(':image', $image_name, PDO::PARAM_STR);
+            $insert->bindParam(':status', $r_status, PDO::PARAM_STR);
+            $insert->bindParam(':removed', $r_removed, PDO::PARAM_INT);
+
+            if ($insert->execute()) {
+                header("Location: rooms.php");
+                exit;
+            } else {
+                echo "فشل في إدخال البيانات.";
+            }
+        } catch (PDOException $e) {
+            echo "خطأ في قاعدة البيانات: " . $e->getMessage();
+        }
     } else {
-        $messageErr = "فشل في تحديث البيانات.";
+        echo "فشل في رفع الصورة. تأكد من صلاحيات مجلد assets/image/rooms.";
     }
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Room</title>
+    <title>Add New Room</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -72,6 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .btn-warning:hover {
             background-color: #e0ac06;
         }
+        /* Fix label alignment for LTR */
         .form-floating > label {
             text-align: left;
         }
@@ -80,11 +102,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
 <div class="card-room">
-    <h3>Edit Room</h3>
+    <h3>Add New Room</h3>
     <?php if ($messageErr): ?>
         <div class="alert alert-danger text-center"><?= $messageErr ?></div>
     <?php endif; ?>
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         <div class="form-floating mb-3">
             <input type="text" name="r_name" class="form-control" placeholder="Room Name" required>
             <label>Room Name</label>
@@ -113,6 +135,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <textarea name="r_description" class="form-control" placeholder="Description" style="height: 100px;"></textarea>
             <label>Description</label>
         </div>
+        <div class="mb-3">
+            <label class="form-label">Room Image</label>
+            <input type="file" name="r_image" class="form-control" required>
+        </div>
         <div class="form-floating mb-3">
             <select name="r_status" class="form-select" required>
                 <option value="Available">Available</option>
@@ -121,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label>Room Status</label>
         </div>
         <div class="d-grid">
-            <button type="submit" class="btn btn-warning btn-lg">Update Room</button>
+            <button type="submit" class="btn btn-warning btn-lg">Add Room</button>
         </div>
     </form>
 </div>
