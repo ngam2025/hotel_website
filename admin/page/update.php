@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php if ($messageErr): ?>
         <div class="alert alert-danger text-center"><?= $messageErr ?></div>
     <?php endif; ?>
-    <form method="POST">
+    <form method="POST"> 
         <div class="form-floating mb-3">
             <input type="text" name="r_name" class="form-control" placeholder="Room Name" required>
             <label>Room Name</label>

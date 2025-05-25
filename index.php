@@ -1,12 +1,4 @@
-<?php 
-session_start();
-if(empty($_SESSION['user_id']) && !empty($_COOKIE['loged_in'])){
-  $_SESSION['user_id']=$_COOKIE['loged_in'];
-}
-if(!empty($_SESSION['user_id'])){
-  header('Location:../pages/taizhotel.php');
-}
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +6,8 @@ if(!empty($_SESSION['user_id'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Taiz Hotel</title>
-    <link rel="stylesheet" href="/assets/css/stylehotel.css">
+    <link rel="stylesheet" href="assets/css/stylehotel.css">
+   
 </head>
 
 <body>
@@ -51,7 +44,7 @@ if(!empty($_SESSION['user_id'])){
       <button type="button" class="bt"> About us </button>
       </a> 
     </div>
-    <img src="/assets/images/carousel/3.png">
+    <img src="assets/images/carousel/3.png">
     
   </div>
 
@@ -82,11 +75,11 @@ if(!empty($_SESSION['user_id'])){
   </div>
 
   <footer>
-    <img src="/assets/images/whatsapp.png">
-    <img src="/assets/images/facebook.png">
-    <img src="/assets/images/twitter.png">
-    <img src="/assets/images/instagram.png">
-    <img src="/assets/images/youtube.png">
+    <img src="assets/images/whatsapp.png">
+    <img src="assets/images/facebook.png">
+    <img src="assets/images/twitter.png">
+    <img src="assets/images/instagram.png">
+    <img src="assets/images/youtube.png">
     <p>&copy; All rights are save</p>
   </footer>
   <footer id="footer">

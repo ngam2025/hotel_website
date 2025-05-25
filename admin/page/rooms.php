@@ -119,12 +119,6 @@ img {
 .btn-update:hover {
   background-color: #218838;
 }
-
-
-</style>
-
-  
-
     </style>
 </head>
 <body>
@@ -169,7 +163,6 @@ img {
     </tbody>
   </table>
 </div>
-
 
 
 
