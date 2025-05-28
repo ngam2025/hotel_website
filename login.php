@@ -14,7 +14,13 @@ if (isset($_POST['submit'])) {
         if ($stmt->rowCount() > 0) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             if (password_verify($password, $row['password'])) {
-                $_SESSION['user_id'] =  $row['user_id'];
+           $_SESSION['user'] = [
+   'user_id' => $row['user_id'],
+   'name' => $row['username']
+];
+
+
+
                 setCookie('loged_in', $row['user_id'], $timeCookie, '/', 'localhost');
                 
                 header('Location: pages/taizhotel.php');

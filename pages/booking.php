@@ -3,29 +3,47 @@ require_once '../config.php';
 session_start();
 $massageError;
 $id;
-$room_id;
+$room_id=0;
 if($_SERVER['REQUEST_METHOD']==='POST'){
   $typeBooking=$_POST['bookingType'];
-  $user_id=$_SESSION['user_id'];
-  if(isset($_POST['room_id'])){
-    $room_id=intval($_POST['room_id']);
+  $user_id=$_SESSION['user']['user_id'];
+  if(!isset($_SESSION['room_id'])){
+    die( "error in room id");
   }else{
-    $room_id=1;
+   
+$room_id = (int)$_SESSION['room_id'];
+
+// جلب السعر الفعلي للغرفة
+$stmt = $conn->prepare("SELECT r_price FROM rooms WHERE r_id = :room_id");
+$stmt->bindParam(':room_id', $room_id, PDO::PARAM_INT);
+$stmt->execute();
+$room = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$room) {
+    die("Room not found.");
+}
+
+$price = $room['r_price'];  
+
+
+$check_in = $_POST['checkIn'];
+$check_out = $_POST['checkOut'];
+$type_payment = $_POST['paymentStatus'];
+
+$din = new DateTime($check_in);
+$dout = new DateTime($check_out);
+$diff = $din->diff($dout);
+$day = $diff->days;
+
+$booking_amont = $price * $day;
+
+
   }
-  $check_in=$_POST['checkIn'];
-  $check_out=$_POST['checkOut'];
-  $type_payment=$_POST['paymentStatus'];
-  $din=new DateTime($check_in);
-  $dout=new DateTime($check_out);
-  $diff=$din->diff($dout);
-  $day=$diff->days;
-  $pric=100.8;
-  $booking_amont=$pric * $day;
   try{
     $insert = $conn->prepare('INSERT INTO booking_order (user_id , room_id, check_in, check_out,type_payment,booking_amont,type_booking) 
-        VALUES (:u_id,:r_id,:ch_in,:ch_out,:t_p,:b_a,:t_b)');
+        VALUES (:u_id,:ro_id,:ch_in,:ch_out,:t_p,:b_a,:t_b)');
         $insert->bindParam(':u_id', $user_id, PDO::PARAM_INT);
-        $insert->bindParam(':r_id', $room_id, PDO::PARAM_INT);
+        $insert->bindParam(':ro_id', $room_id, PDO::PARAM_INT);
         $insert->bindParam(':ch_in', $check_in, PDO::PARAM_STR);
         $insert->bindParam(':ch_out', $check_out, PDO::PARAM_STR);
         $insert->bindParam(':t_p', $type_payment, PDO::PARAM_STR);

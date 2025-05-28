@@ -1,4 +1,17 @@
 
+
+
+<?php 
+session_start();
+if(empty($_SESSION['user']['user_id']) && !empty($_COOKIE['loged_in'])){
+  $_SESSION['user']['user_id']=$_COOKIE['loged_in'];
+}
+if(!empty($_SESSION['user']['user_id'])){
+ header('Location: /hotel_website/pages/taizhotel.php');
+
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

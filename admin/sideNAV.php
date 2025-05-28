@@ -92,15 +92,15 @@
 
   <div class="header">
     Taiz Hotel
-    <button class="logout-button">Logout</button>
+    <a class="logout-button" href="logout.php">Logout</a>
   </div>
 
   <nav class="main-menu">
     <ul>
       <li><a href="page/dashbord.php">Dashboard</a></li>
-      <li><a href="#">Reservations</a></li>
+      <li><a href="#">Booking</a></li>
       <li><a href="#">Users</a></li>
-      <li><a href="#">Visitor Inquiries</a></li>
+      <!-- <li><a href="#">Visitor Inquiries</a></li> -->
       <li><a href="page/rooms.php">Rooms</a></li>
       <li><a href="#">Facilities & Services</a></li>
       <li><a href="#">Promotions</a></li>

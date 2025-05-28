@@ -115,9 +115,9 @@ try {
 <nav class="main-menu">
     <ul>
       <li><a href="index.php">Dashboard</a></li>
-      <li><a href="#">Reservations</a></li>
+      <li><a href="page/bookingViwe.php">Booking</a></li>
       <li><a href="#">Users</a></li>
-      <li><a href="#">Visitor Inquiries</a></li>
+      <!-- <li><a href="#">Visitor Inquiries</a></li> -->
       <li><a href="page/rooms.php">Rooms</a></li>
       <li><a href="page/user_requies.php">User Qurry</a></li>
       <li><a href="#">Promotions</a></li>

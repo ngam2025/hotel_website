@@ -4,13 +4,11 @@
     
     
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    if(isset($_SESSION['personal']['user_id'])){
-      
- 
+    if(isset($_SESSION['user']['user_id'])){
     $subject       = htmlspecialchars($_POST['subject']);
     $message      = htmlspecialchars($_POST['message']);
-    $user_id = $_SESSION['personal']['user_id'];
+    $user_id=$_SESSION['user']['user_id'];
+    
     
     
     }
@@ -39,22 +37,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <!-- <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet"> -->
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tiaz Hotel</title>
-
-  <!-- Bootstrap محلي -->
-  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
-
-  <!-- CSS خاص بالموقع -->
-  <link rel="stylesheet" href="../assets/css/Style.css" />
-
-  <link rel="shortcut icon" href="../favicon.ico" />
+   
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiaz Hotel</title>
+    <!-- Style Link -->
+    <link rel="stylesheet" href="../assets/css/Style.css">
+    <link rel="stylesheet" href="../assets/css/alert.css">
+  
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
 </head>
 
 <body>
-    
+   
     <!-- Header Start -->
     <header>
         <div id="navbar">
@@ -199,6 +195,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p>Copyright &copy; 2024 All rights reserved | made by <b> <a href=" https://github.com/ngam2025/hotel_website "
                     target="_blank"> Ngamaldeen AL-ziazi</a> </b></p>
     </footer>
+    <div id="alert-container">
+
+    </div>
+    <script src="/assets/js/alert.js"></script>
+
 </body>
 
 </html>
