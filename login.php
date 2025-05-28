@@ -14,9 +14,11 @@ if (isset($_POST['submit'])) {
         if ($stmt->rowCount() > 0) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             if (password_verify($password, $row['password'])) {
+
                 $_SESSION['username']=$row['username'];
                 $_SESSION['userImage']=$row['imag'];
                 $_SESSION['user_id']= $row['user_id'];
+
                 setCookie('loged_in', $row['user_id'], $timeCookie, '/', 'localhost');
                 setCookie('username', $row['username'], $timeCookie, '/', 'localhost');
                 setCookie('userImage', $row['imag'], $timeCookie, '/', 'localhost');

@@ -45,8 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tiaz Hotel</title>
     <!-- Style Link -->
-    <link rel="stylesheet" href="/assets/css/Style.css">
-    <link rel="stylesheet" href="/assets/css/alert.css">
+    <link rel="stylesheet" href="../assets/css/Style.css">
+    <link rel="stylesheet" href="../assets/css/alert.css">
   
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
 </head>

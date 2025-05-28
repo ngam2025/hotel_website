@@ -119,12 +119,6 @@ img {
 .btn-update:hover {
   background-color: #218838;
 }
-
-
-</style>
-
-  
-
     </style>
 </head>
 <body>
@@ -172,13 +166,12 @@ img {
 
 
 
-
 <nav class="main-menu">
-    <ul>
+       <ul>
       <li><a href="../index.php">Dashboard</a></li>
-      <li><a href="#">Reservations</a></li>
+      <li><a href="bookingViwe.php">Booking</a></li>
       <li><a href="#">Users</a></li>
-      <li><a href="#">Visitor Inquiries</a></li>
+      <!-- <li><a href="#">Visitor Inquiries</a></li> -->
       <li><a href="rooms.php">Rooms</a></li>
       <li><a href="user_requies.php">User Qurry</a></li>
       <li><a href="#">Promotions</a></li>

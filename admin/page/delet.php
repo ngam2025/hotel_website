@@ -12,11 +12,6 @@ header('Location: rooms.php');
 
 ?>
 
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
