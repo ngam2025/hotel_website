@@ -1,9 +1,11 @@
 <?php 
 session_start();
-if(empty($_SESSION['user']['user_id']) && !empty($_COOKIE['loged_in'])){
-  $_SESSION['user']['user_id']=$_COOKIE['loged_in'];
+if(empty($_SESSION['user_id']) && !empty($_COOKIE['loged_in']) && empty($_SESSION['username']) && !empty($_COOKIE['username']) && empty($_SESSION['userImage']) && !empty($_COOKIE['userImage'])){
+  $_SESSION['user_id']=$_COOKIE['loged_in'];
+  $_SESSION['username']=$_COOKIE['username'];
+  $_SESSION['userImage']=$_COOKIE['userImage'];
 }
-if(!empty($_SESSION['user']['user_id'])){
+if(!empty($_SESSION['user_id']) && !empty($_SESSION['username']) && !empty($_SESSION['userImage'])){
   header('Location:../pages/taizhotel.php');
 }
 ?>

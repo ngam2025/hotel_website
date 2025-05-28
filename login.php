@@ -7,20 +7,19 @@ if (isset($_POST['submit'])) {
     $email = htmlspecialchars($_POST['email']);
     $password = $_POST['password'];
     try{
-        $stmt = $conn->prepare("SELECT user_id, username, email, password FROM users WHERE email =:s");
+        $stmt = $conn->prepare("SELECT user_id,imag, username, email, password FROM users WHERE email =:s");
         $stmt->bindParam(":s", $email, PDO::PARAM_STR);
         $stmt->execute();
         
         if ($stmt->rowCount() > 0) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             if (password_verify($password, $row['password'])) {
-                $_SESSION['user']['user_id'] = 
-                [ 
-                    'user_id'=>$row['user_id'],
-                    'name'=>$row['username']
-                ];
+                $_SESSION['username']=$row['username'];
+                $_SESSION['userImage']=$row['imag'];
+                $_SESSION['user_id']= $row['user_id'];
                 setCookie('loged_in', $row['user_id'], $timeCookie, '/', 'localhost');
-                
+                setCookie('username', $row['username'], $timeCookie, '/', 'localhost');
+                setCookie('userImage', $row['imag'], $timeCookie, '/', 'localhost');
                 header('Location: pages/taizhotel.php');
                 exit;
             } else {

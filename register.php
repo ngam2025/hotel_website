@@ -16,10 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $image_tmp  = $image['tmp_name'];
     $image_name = uniqid('user_', true) . '-' . basename($image['name']);
-    $target     = __DIR__ . '/uploads/' . $image_name;
+    $upload_dir     = __DIR__ . '/assets/images/users/';
+    $target         = $upload_dir . $image_name;
     move_uploaded_file($image_tmp, $target);
-    
-    
+
     try{
     $stmt = $conn->prepare('SELECT email FROM users WHERE email =:email');
     $stmt->bindParam(':email', $email,PDO::PARAM_STR);
@@ -39,7 +39,7 @@ $insert->bindParam(':em', $email, PDO::PARAM_STR);
 $insert->bindParam(':pas', $password_hash, PDO::PARAM_STR);
 $insert->bindParam(':g', $gender, PDO::PARAM_STR);    
 $insert->bindParam(':date', $dof, PDO::PARAM_STR);
-$insert->bindParam(':terget', $target, PDO::PARAM_STR);
+$insert->bindParam(':terget', $image_name, PDO::PARAM_STR);
 
         if ($insert->execute()) {
             header('Location: login.php');

@@ -6,7 +6,7 @@ $id;
 $room_id=0;
 if($_SERVER['REQUEST_METHOD']==='POST'){
   $typeBooking=$_POST['bookingType'];
-  $user_id=$_SESSION['user']['user_id'];
+  $user_id=$_SESSION['user_id'];
   if(!isset($_SESSION['room_id'])){
     die( "error in room id");
   }else{

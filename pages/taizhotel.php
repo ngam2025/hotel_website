@@ -1,13 +1,15 @@
 <?php
     require_once '../config.php';
     session_start();
-    
+    $userImage=$_SESSION['userImage'];
+    $username=$_SESSION['username'];
     
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if(isset($_SESSION['user']['user_id'])){
+    if(isset($_SESSION['user_id'])){
     $subject       = htmlspecialchars($_POST['subject']);
     $message      = htmlspecialchars($_POST['message']);
-    $user_id=$_SESSION['user']['user_id'];
+    $user_id=$_SESSION['user_id'];
+    
     
     
     
@@ -57,11 +59,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             <nav role="navigation">
                 <ul>
+                    <li>
+                        <div class="user-section">
+                            <img 
+                                src="<?php echo "../assets/images/users/".$userImage ?>"
+                                alt="صورة المستخدم" 
+                                class="user-image" 
+                                aria-haspopup="true" 
+                                aria-expanded="false" 
+                                aria-controls="userDropdown" 
+                                onclick="toggleDropdown()"
+                            >
+                            <div class="dropdown" id="userDropdown" role="menu" aria-label="قائمة المستخدم">
+                                <span > <?=$username; ?></span>
+                                <a href="profile.php" role="menuitem">Profile </a>
+                                <a href="settings.php" role="menuitem">Satting</a>
+                                <a href="logout.php" role="menuitem"> Logout</a>
+                            </div>
+                        </div>
+                    </li>
                     <li><a href="taizhotel.php">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="room.php">ROOMS</a></li>
                     <li><a href="#contact">User Queries</a></li>
-                    <li><a href="logout.php">Log Out</a></li>
+                   
                 </ul>
             </nav>
         </div>
@@ -198,7 +219,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id="alert-container">
 
     </div>
-    <script src="/assets/js/alert.js"></script>
+    <script>
+         function toggleDropdown() {
+            const dd = document.getElementById('userDropdown');
+            const expanded = dd.classList.toggle('show');
+            document.querySelector('.user-image')
+                    .setAttribute('aria-expanded', expanded);
+        }
+
+         window.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav.nav-buttons');
+            const dd  = document.getElementById('userDropdown');
+            const userImg = document.querySelector('.user-image');
+
+            if (!event.target.closest('.nav-toggle') && !event.target.closest('nav.nav-buttons')) {
+                nav.classList.remove('show');
+            }
+            if (!event.target.closest('.user-section')) {
+                dd.classList.remove('show');
+                userImg.setAttribute('aria-expanded', 'false');
+            }
+        });
+    </script>
 
 </body>
 
