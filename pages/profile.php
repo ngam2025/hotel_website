@@ -1,43 +1,30 @@
 <?php
-
 session_start();
 $pageTitle = "Profile";
-
-
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
-?><div class="profile-card">
+?>
+<div class="profile-card">
     <h2>Profile</h2>
 <div id="mainLoader" class="loader" style="display: none;"></div>
-
 <div id="profileData">
-
 </div>
-
 <button class="edit-btn" onclick="window.location.href='edit_profile.php'">Edit Profile</button>
-
 </div><script>
-
 function showLoader() {
     document.getElementById('mainLoader').style.display = 'block';
 }
-
-
 function hideLoader() {
     document.getElementById('mainLoader').style.display = 'none';
 }
-
-
 function fetchProfileData() {
     showLoader();
-    
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'get_profile.php', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-
     xhr.onload = function() {
         hideLoader();
         if (this.status === 200) {
@@ -55,16 +42,12 @@ function fetchProfileData() {
             showError('Connection error: ' + this.status);
         }
     };
-
     xhr.onerror = function() {
         hideLoader();
         showError('Failed to connect to server');
     };
-
     xhr.send();
 }
-
-
 function displayProfile(userData) {
     const profileHtml = `
         <div class="profile-info">
@@ -95,8 +78,6 @@ function displayProfile(userData) {
     `;
     document.getElementById('profileData').innerHTML = profileHtml;
 }
-
-
 function showError(message) {
     document.getElementById('profileData').innerHTML = `
         <div class="error-message">
@@ -105,8 +86,6 @@ function showError(message) {
         </div>
     `;
 }
-
-
 window.addEventListener('DOMContentLoaded', () => {
     fetchProfileData();
     setInterval(fetchProfileData, 80000);

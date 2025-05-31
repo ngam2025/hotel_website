@@ -42,7 +42,7 @@ try {
     </style>
 </head>
 <body>
-     <form action="booking.php" method="GET">
+     
     <header class="bg-dark text-white text-center py-5">
         <div class="container">
             <h1>Discover Our Rooms and Book Your Stay</h1>
@@ -52,6 +52,7 @@ try {
     <div class="row g-4">
         
         <?php foreach ($rooms as $room): ?>
+            
             <div class="col-md-6 col-lg-4">
                 <div class="room-card bg-white">
                     
@@ -65,17 +66,17 @@ try {
                             <li><strong>Adults:</strong> <?= htmlspecialchars($room['adult_capacity']) ?></li>
                             <li><strong>Children:</strong> <?= htmlspecialchars($room['child_capacity']) ?></li>
                             <li><strong>Price:</strong> <?= htmlspecialchars($room['r_price']) ?> SAR/night</li>
-                            <?php
-                            $_SESSION['room_id']=$room['r_id'];
-                            ?>
+                            
                         </ul>
-                        <?php echo '<a class="btn btn-success w-100 mt-3" href="booking.php? room_i='.$room['r_id'].'">Book Now</a>'?>
+                        <a href="booking.php?room_id=<?=$room['r_id']?>" class="btn btn-success w-100 mt-3">Book Now </a>
                     </div>
                     
                 </div>
             </div>
+            
         <?php endforeach; ?>
     </div>
+
     <?php else: ?>
         <div class="alert alert-warning text-center" role="alert">
             No rooms available at the moment.
@@ -84,6 +85,6 @@ try {
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</form>
+
 </body>
 </html>

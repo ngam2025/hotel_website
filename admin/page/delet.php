@@ -3,7 +3,7 @@ require_once '../../config.php';
 
 $id = $_REQUEST['id']; 
 
-$stmt = $conn->prepare("DELETE FROM rooms WHERE r_id = :id"); 
+$stmt = $conn->prepare("UPDATE rooms SET r_removed=1 WHERE r_id = :id"); 
 
 $stmt->bindParam(":id", $id, PDO::PARAM_INT);
 $stmt->execute();

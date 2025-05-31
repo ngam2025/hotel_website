@@ -6,13 +6,13 @@ require_once '../config.php';
 
    
 try {
- $stmt = $conn->prepare("SELECT COUNT(*) FROM rooms WHERE r_status = :status");
+ $stmt = $conn->prepare("SELECT COUNT(*) FROM rooms WHERE r_status = :status AND r_removed=1");
     $stmt->execute([':status' => 'Unavailable']);
     $unavailableRooms = $stmt->fetchColumn();
 
 
     // عدد الغرف المتاحة
-    $stmt = $conn->prepare("SELECT COUNT(*) FROM rooms WHERE r_status = :status");
+    $stmt = $conn->prepare("SELECT COUNT(*) FROM rooms WHERE r_status = :status AND r_removed=0");
     $stmt->execute([':status' => 'available']);
     $availableRooms = $stmt->fetchColumn();
 

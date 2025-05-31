@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="dropdown" id="userDropdown" role="menu" aria-label="قائمة المستخدم">
                                 <span > <?=$username; ?></span>
                                 <a href="profile.php" role="menuitem">Profile </a>
-                                <a href="settings.php" role="menuitem">Satting</a>
+                                
                                 <a href="logout.php" role="menuitem"> Logout</a>
                             </div>
                         </div>

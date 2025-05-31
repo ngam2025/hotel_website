@@ -1,7 +1,7 @@
 <?php 
 require_once '../../config.php';
 include '../sideNAV.php'; 
-$stm = $conn->prepare("SELECT * FROM rooms");
+$stm = $conn->prepare("SELECT * FROM rooms WHERE r_removed=0");
 $stm->execute();
 ?>
 <!DOCTYPE html>

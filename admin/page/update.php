@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $child_capacity = $_POST['child_capacity'];
     $r_description  = $_POST['r_description'];
     $r_status       = $_POST['r_status'];
-
+    
     $query = "UPDATE rooms SET r_name=:name, r_area=:area, r_price=:price, quantity=:quantity,
               adult_capacity=:adult, child_capacity=:child, r_description=:descr, r_status=:status
               WHERE r_id = :id";

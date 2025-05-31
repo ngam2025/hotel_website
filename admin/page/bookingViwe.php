@@ -1,7 +1,7 @@
 <?php
 require_once '../../config.php';
 include '../sideNAV.php';
-// session_start();
+
 
 try {
     $stmt = $conn->prepare("SELECT bo.*, u.username 

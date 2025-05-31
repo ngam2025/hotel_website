@@ -2,24 +2,17 @@
 require_once '../config.php';
 session_start();
 $massageError;
-$id;
-$room_id=0;
-if($_SERVER['REQUEST_METHOD']==='POST'){
-  $typeBooking=$_POST['bookingType'];
-  $user_id=$_SESSION['user_id'];
-  if(!isset($_SESSION['room_id'])){
-    die( "error in room id");
-  }else{
-   
-$room_id = (int)$_SESSION['room_id'];
 
-// جلب السعر الفعلي للغرفة
-$stmt = $conn->prepare("SELECT r_price FROM rooms WHERE r_id = :room_id");
-$stmt->bindParam(':room_id', $room_id, PDO::PARAM_INT);
+$user_id=$_SESSION['user_id'];
+if($_SERVER['REQUEST_METHOD']==='POST'){
+$typeBooking=$_POST['bookingType'];
+$r_id=$_POST['room_id'];
+$stmt = $conn->prepare("SELECT r_price FROM rooms WHERE r_id =:id");
+$stmt->bindParam(':id',$r_id , PDO::PARAM_INT);
 $stmt->execute();
 $room = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if (!$room) {
+if ($room==null) {
     die("Room not found.");
 }
 
@@ -38,19 +31,19 @@ $day = $diff->days;
 $booking_amont = $price * $day;
 
 
-  }
+  
   try{
     $insert = $conn->prepare('INSERT INTO booking_order (user_id , room_id, check_in, check_out,type_payment,booking_amont,type_booking) 
         VALUES (:u_id,:ro_id,:ch_in,:ch_out,:t_p,:b_a,:t_b)');
         $insert->bindParam(':u_id', $user_id, PDO::PARAM_INT);
-        $insert->bindParam(':ro_id', $room_id, PDO::PARAM_INT);
+        $insert->bindParam(':ro_id', $r_id, PDO::PARAM_INT);
         $insert->bindParam(':ch_in', $check_in, PDO::PARAM_STR);
         $insert->bindParam(':ch_out', $check_out, PDO::PARAM_STR);
         $insert->bindParam(':t_p', $type_payment, PDO::PARAM_STR);
         $insert->bindParam(':b_a', $booking_amont, PDO::PARAM_STR);
          $insert->bindParam(':t_b', $typeBooking, PDO::PARAM_STR);
         if ($insert->execute()) {
-            header('Location: taizhotel.php');
+            header('Location: room.php');
             exit;
         } 
         else{
@@ -149,6 +142,7 @@ $booking_amont = $price * $day;
       <div class="form-floating mb-3">
         <input type="date" name="checkOut" class="form-control" id="checkOut" required>
         <label for="checkOut">تاريخ الخروج</label>
+        <input type="hidden" name="room_id" value="<?= htmlspecialchars($_GET['room_id'] ?? '') ?>">
       </div>
 
       <div class="form-floating mb-3">
